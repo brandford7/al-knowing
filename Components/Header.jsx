@@ -1,12 +1,14 @@
 import {
   Box,
   Container,
-  Menu,
-  MenuItem,
   IconButton,
   Text,
-  MenuButton,
-  MenuList,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerBody,
+  useDisclosure,
+  DrawerHeader,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -15,6 +17,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   useEffect(() => {
     getCategories().then((newCategories) => setCategories(newCategories));
   }, []);
@@ -29,7 +33,7 @@ const Header = () => {
           w="100%"
           borderBottomWidth="full"
         >
-          <Box display={["flex","block", "block"]} float={["", "left", ""]}>
+          <Box display={["flex", "block", "block"]} float={["", "left", ""]}>
             <Link href="/" passHref>
               <Text
                 cursor="pointer"
@@ -43,12 +47,20 @@ const Header = () => {
           </Box>
           <Box>
             <Box display={["flex", "none", "none"]} float="right">
-              <Menu isLazy>
-                <MenuButton as={IconButton} icon={<GiHamburgerMenu />} />
+              <IconButton
+                colorScheme="blue"
+                onClick={onOpen}
+                icon={<GiHamburgerMenu />}
+              />
 
-                <MenuList>
-                  {categories.map((category) => (
-                    <MenuItem>
+              <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
+                <DrawerOverlay />
+                <DrawerContent>
+                  <DrawerHeader borderBottomWidth="1px">
+                    Basic Drawer
+                  </DrawerHeader>
+                  <DrawerBody>
+                    {categories.map((category) => (
                       <Link
                         key={category.slug}
                         href={`/category/${category.slug}`}
@@ -63,10 +75,10 @@ const Header = () => {
                           {category.name}
                         </Text>
                       </Link>
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
+                    ))}
+                  </DrawerBody>
+                </DrawerContent>
+              </Drawer>
             </Box>
             <Box
               display={["none", "contents", "contents"]}

@@ -32,6 +32,7 @@ const PostCard = ({ post }) => {
           transitionDuration="700"
           textAlign="center"
           mb="8"
+          fontSize={["1rem", "1.5rem", "1.5rem"]}
           cursor="pointer"
           _hover={{
             color: "pink.600",
