@@ -5,7 +5,7 @@ import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import { Categories, LoaderBar, PostCard } from "../../Components";
 import { getCategories, getCategoryPost } from "../../Services";
 
-const CategoryPost = ({ posts, }) => {
+const CategoryPost = ({ posts }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <LoaderBar />;
@@ -60,6 +60,6 @@ export async function getStaticPaths() {
   const categories = await getCategories();
   return {
     paths: categories.map(({ slug }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: "blocking",
   };
 }

@@ -1,27 +1,25 @@
 import React from "react";
 import Head from "next/head";
-import { fetchPosts, fetchPostDetails, } from "../../Services";
+import { fetchPosts, fetchPostDetails } from "../../Services";
 import {
   PostWidget,
   PostDetail,
   Categories,
   Author,
   Comments,
-  CommentsForm,LoaderBar
+  CommentsForm,
+  LoaderBar,
 } from "../../Components";
 import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { AdjacentPosts } from "../../sections";
 
-
-
-
 const PostDetails = ({ post }) => {
-const router= useRouter()
+  const router = useRouter();
 
-    if (router.isFallback) {
-    return <LoaderBar/>
-}
+  if (router.isFallback) {
+    return <LoaderBar />;
+  }
   return (
     <>
       <Head>
@@ -67,14 +65,14 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { post: data },
-    revalidate : 10
-  }
+    revalidate: 10,
+  };
 }
 
 export async function getStaticPaths() {
   const posts = await fetchPosts();
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
