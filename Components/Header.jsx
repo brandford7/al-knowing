@@ -2,7 +2,7 @@ import { Box, Container, Text } from "@chakra-ui/react";
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { getCategories } from "../Services";
-import { HamburgerIcon } from "@chakra-ui/icons";
+
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -28,7 +28,7 @@ const Header = () => {
                 fontSize="4xl"
                 color="black"
               >
-                All Knowing News
+                All-Knowing 
               </Text>
             </Link>
           </Box>
