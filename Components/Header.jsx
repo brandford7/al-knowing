@@ -57,7 +57,7 @@ const Header = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                   <DrawerHeader borderBottomWidth="1px">
-                    Basic Drawer
+                    Categories
                   </DrawerHeader>
                   <DrawerBody>
                     {categories.map((category) => (
