@@ -25,6 +25,7 @@ const Header = () => {
 
   return (
     <>
+      
       <Container mx="auto" px="10" mb="8" w="100%" maxW="container.xl">
         <Box
           display="inline-block"
@@ -56,9 +57,7 @@ const Header = () => {
               <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
                 <DrawerContent>
-                  <DrawerHeader borderBottomWidth="1px">
-                    Categories
-                  </DrawerHeader>
+                  <DrawerHeader  borderBottomWidth='1px'>Categories</DrawerHeader>
                   <DrawerBody>
                     {categories.map((category) => (
                       <Link
@@ -71,6 +70,9 @@ const Header = () => {
                           ml="4"
                           mt="2"
                           cursor="pointer"
+                          borderBottom=""
+                          borderBottomWidth="1px"
+                          onClick={onClose}
                         >
                           {category.name}
                         </Text>

@@ -1,10 +1,10 @@
 import React from "react";
-
+import { RichText } from "@graphcms/rich-text-react-renderer"
 import moment from "moment";
 import { Box, chakra, Img, Text } from "@chakra-ui/react";
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, obj, type) => {
+ /* const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
     if (obj) {
@@ -19,6 +19,9 @@ const PostDetail = ({ post }) => {
       if (obj.underline) {
         modifiedText = <u key={index}>{text}</u>;
       }
+       if (obj.link) {
+         modifiedText = <a key={index}>{text}</a>;
+       }
     }
     switch (type) {
       case "heading-three":
@@ -45,6 +48,14 @@ const PostDetail = ({ post }) => {
             ))}
           </h4>
         );
+      case "link":
+        return (
+          <Link key={index} className="text-md font-semibold mb-4">
+            {modifiedText.map((item, i) => (
+              <React.Fragment key={i}>{item}</React.Fragment>
+            ))}
+          </Link>
+        );
       case "image":
         return (
           <img
@@ -58,7 +69,8 @@ const PostDetail = ({ post }) => {
       default:
         return modifiedText;
     }
-  };
+  }; */
+  
 
   return (
     <>
@@ -138,13 +150,14 @@ const PostDetail = ({ post }) => {
           <chakra.h1 mb="8" fontSize="3xl" fontWeight="semibold">
             {post.title}
           </chakra.h1>
-          {post.content.raw.children.map((typeObj, index) => {
+          <RichText content={post.content.raw.children} />
+          {/*  {post.content.raw.children.map((typeObj, index) => {
             const children = typeObj.children.map((item, itemindex) =>
               getContentFragment(itemindex, item.text, item)
             );
 
             return getContentFragment(index, children, typeObj, typeObj.type);
-          })}
+          })} */}
         </Box>
       </Box>
     </>

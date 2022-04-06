@@ -23,7 +23,7 @@ const PostDetails = ({ post }) => {
   return (
     <>
       <Head>
-        <title>{post.slug}</title>
+        <title>{post.title}</title>
         <meta name={post.title} content={post.title} />
         <link rel="icon" href="/favicon.jpg" />
       </Head>
