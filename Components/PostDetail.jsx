@@ -4,72 +4,7 @@ import moment from "moment";
 import { Box, chakra, Img, Text } from "@chakra-ui/react";
 
 const PostDetail = ({ post }) => {
- /* const getContentFragment = (index, text, obj, type) => {
-    let modifiedText = text;
-
-    if (obj) {
-      if (obj.bold) {
-        modifiedText = <b key={index}>{text}</b>;
-      }
-
-      if (obj.italic) {
-        modifiedText = <em key={index}>{text}</em>;
-      }
-
-      if (obj.underline) {
-        modifiedText = <u key={index}>{text}</u>;
-      }
-       if (obj.link) {
-         modifiedText = <a key={index}>{text}</a>;
-       }
-    }
-    switch (type) {
-      case "heading-three":
-        return (
-          <h3 key={index} className="text-xl font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </h3>
-        );
-      case "paragraph":
-        return (
-          <p key={index} className="mb-8">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </p>
-        );
-      case "heading-four":
-        return (
-          <h4 key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </h4>
-        );
-      case "link":
-        return (
-          <Link key={index} className="text-md font-semibold mb-4">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
-          </Link>
-        );
-      case "image":
-        return (
-          <img
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          />
-        );
-      default:
-        return modifiedText;
-    }
-  }; */
+ 
   
 
   return (
@@ -150,14 +85,57 @@ const PostDetail = ({ post }) => {
           <chakra.h1 mb="8" fontSize="3xl" fontWeight="semibold">
             {post.title}
           </chakra.h1>
-          <RichText content={post.content.raw.children} />
-          {/*  {post.content.raw.children.map((typeObj, index) => {
-            const children = typeObj.children.map((item, itemindex) =>
-              getContentFragment(itemindex, item.text, item)
-            );
-
-            return getContentFragment(index, children, typeObj, typeObj.type);
-          })} */}
+          <RichText
+            content={post.content.raw.children}
+            renderers={{
+              h1: ({ children }) => <h1 className={`wfafsa`}>{children}</h1>,
+              blockquote: ({ children }) => (
+                <blockquote
+                  style={{
+                    paddingLeft: "16px",
+                    borderLeft: "4px solid blue",
+                    fontSize: "26px",
+                  }}
+                >
+                  {children}
+                </blockquote>
+              ),
+              a: ({ children, href, openInNewTab }) => (
+                <a
+                  href={href}
+                  target={openInNewTab ? "_blank" : "_self"}
+                  style={{ color: "blue" }}
+                  rel="noreferrer"
+                >
+                  {children}
+                </a>
+              ),
+              h2: ({ children }) => (
+                <h2 style={{ color: "blue" }}>{children}</h2>
+              ),
+              bold: ({ children }) => <strong>{children}</strong>,
+              code_block: ({ children }) => {
+                return (
+                  <pre className="line-numbers language-none">
+                    <code>{children}</code>
+                  </pre>
+                );
+              },
+              Asset: {
+                application: () => (
+                  <div>
+                    <p>Asset</p>
+                  </div>
+                ),
+                text: () => (
+                  <div>
+                    <p>text plain</p>
+                  </div>
+                ),
+              },
+            }}
+          />
+         
         </Box>
       </Box>
     </>
