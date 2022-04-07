@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Script from "next/script"
 import React, {  useEffect } from "react";
 import { Layout } from "../Components"
-
+import * as gtag from "../lib/gtag";
 
 
 function MyApp({ Component, pageProps }) {
