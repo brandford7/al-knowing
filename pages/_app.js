@@ -1,18 +1,52 @@
-import { Box, ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import '../styles/globals.scss';
-import Head from "next/head";
-import React, { useState, useEffect } from "react";
-import {Layout} from "../Components"
+import { useRouter } from 'next/router'
+import Script from "next/script"
+import React, {  useEffect } from "react";
+import { Layout } from "../Components"
+import * as gtag from "../lib/gtag";
 
 
 function MyApp({ Component, pageProps }) {
+
+ const router = useRouter();
+ useEffect(() => {
+   const handleRouteChange = (url) => {
+     gtag.pageview(url);
+   };
+   router.events.on("routeChangeComplete", handleRouteChange);
+   return () => {
+     router.events.off("routeChangeComplete", handleRouteChange);
+   };
+ }, [router.events]);
+
   return (
-    <ChakraProvider>
-   
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ChakraProvider>
+    <>
+      
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gtag.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
+      <ChakraProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
+    </>
   );
 }
 

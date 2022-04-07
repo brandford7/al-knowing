@@ -1,12 +1,9 @@
 import React from "react";
-import { RichText } from "@graphcms/rich-text-react-renderer"
+import { RichText } from "@graphcms/rich-text-react-renderer";
 import moment from "moment";
 import { Box, chakra, Img, Text } from "@chakra-ui/react";
 
 const PostDetail = ({ post }) => {
- 
-  
-
   return (
     <>
       <Box
@@ -88,7 +85,7 @@ const PostDetail = ({ post }) => {
           <RichText
             content={post.content.raw.children}
             renderers={{
-              h1: ({ children }) => <h1 className={`wfafsa`}>{children}</h1>,
+              h1: ({ children }) => <h1>{children}</h1>,
               blockquote: ({ children }) => (
                 <blockquote
                   style={{
@@ -99,6 +96,14 @@ const PostDetail = ({ post }) => {
                 >
                   {children}
                 </blockquote>
+              ),
+              image: ({ children }) => (
+                <img
+                  alt={children.title}
+                  height={children.height}
+                  width={children.width}
+                  src={children.src}
+                />
               ),
               a: ({ children, href, openInNewTab }) => (
                 <a
@@ -111,8 +116,15 @@ const PostDetail = ({ post }) => {
                 </a>
               ),
               h2: ({ children }) => (
-                <h2 style={{ color: "blue" }}>{children}</h2>
+                <h2 style={{ color: "black" }}>{children}</h2>
               ),
+              h3: ({ children }) => (
+                <h3 className="text-xl font-semibold mb-4">{children}</h3>
+              ),
+              h4: ({ children }) => (
+                <h4 style={{ color: "black" }}>{children}</h4>
+              ),
+              paragraph: ({ children }) => <p className="mb-8">{children}</p>,
               bold: ({ children }) => <strong>{children}</strong>,
               code_block: ({ children }) => {
                 return (
@@ -121,21 +133,8 @@ const PostDetail = ({ post }) => {
                   </pre>
                 );
               },
-              Asset: {
-                application: () => (
-                  <div>
-                    <p>Asset</p>
-                  </div>
-                ),
-                text: () => (
-                  <div>
-                    <p>text plain</p>
-                  </div>
-                ),
-              },
             }}
           />
-         
         </Box>
       </Box>
     </>
