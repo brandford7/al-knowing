@@ -16,7 +16,7 @@ const PostCard = ({ post }) => {
       >
         <Box pos="relative" pb="80" mb="6" overflow="hidden" shadow="md">
           <Img
-            src={post.featuredImage?.url}
+            src={post.featuredImage.url}
             alt={post.title}
             objectPosition="top"
             w="full"
