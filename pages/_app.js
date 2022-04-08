@@ -22,11 +22,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-      >
-        <script
+      <ChakraProvider>
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+        />
+        <Script
           id="gtag-init"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -39,9 +40,7 @@ function MyApp({ Component, pageProps }) {
             });
           `,
           }}
-        ></script>
-      </Script>
-      <ChakraProvider>
+        />
         <Layout>
           <Component {...pageProps} />
         </Layout>
