@@ -22,11 +22,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <ChakraProvider>
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-        >
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+      >
         <script
           id="gtag-init"
           strategy="afterInteractive"
@@ -41,7 +40,8 @@ function MyApp({ Component, pageProps }) {
           `,
           }}
         ></script>
-        </Script>
+      </Script>
+      <ChakraProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>
