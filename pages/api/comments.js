@@ -33,7 +33,7 @@ export default async function asynchandler(req, res) {
         id
       }
     }
-  `;
+  `
 
   const result = await graphQLClient.request(query, {
     name: req.body.name,

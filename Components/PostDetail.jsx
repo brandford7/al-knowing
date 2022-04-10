@@ -4,8 +4,57 @@ import moment from "moment";
 import { Box, chakra, Img, Text } from "@chakra-ui/react";
 
 const PostDetail = ({ post }) => {
+const details = (
+  <>
+    <RichText
+      content={post.content.raw.children}
+      renderers={{
+        h1: ({ children }) => <h1>{children}</h1>,
+        blockquote: ({ children }) => <blockquote>{children}</blockquote>,
+        a: ({ children, href, openInNewTab }) => (
+          <a
+            href={href}
+            target={openInNewTab ? "_blank" : "_self"}
+            style={{ color: "blue" }}
+            rel="noreferrer"
+          >
+            <u> {children}</u>
+          </a>
+        ),
+        h2: ({ children }) => <h2 style={{ color: "darkcyan" }}>{children}</h2>,
+
+        h4: ({ children }) => (
+          <h4 className="text-md font-semibold mb-4">{children}</h4>
+        ),
+        bold: ({ children }) => <strong>{children}</strong>,
+        p: ({ children }) => <p className="mb-8 ">{children}</p>,
+
+        code_block: ({ children }) => {
+          return (
+            <pre>
+              <code>{children}</code>
+            </pre>
+          );
+        },
+        Asset: {
+          application: () => (
+            <div>
+              <p>Asset</p>
+            </div>
+          ),
+          text: () => (
+            <div>
+              <p >text plain</p>
+            </div>
+          ),
+        },
+      }}
+    />
+  </>
+);
+
   return (
-    <>
+    <React.Fragment>
       <Box
         bg=" white"
         shadow="lg"
@@ -13,35 +62,38 @@ const PostDetail = ({ post }) => {
         p={["", "", "8"]}
         pb="12"
         mb="8"
+        maxH='auto' 
       >
-        <Box pos="relative" overflow="hidden" shadow="md" mb="6">
+        <Box pos="relative" overflow="hidden" shadow="md" mb="4">
           <Img
             src={post.featuredImage.url}
-            alt=""
+            alt={post.title}
             objectPosition="top"
             h="full"
             w="full"
             objectSize="cover"
+        
             shadow="lg"
             roundedTop="lg"
             rounded={["", "", "lg"]}
           />
         </Box>
-        <Box px={["4", "4", "0"]}>
+        <Box  px={["4", "4", "0"]} overflow="hidden" >
           <Box display="flex" alignItems="center" mb="8" w="full">
             <Box
               display={["hidden", "flex", "flex"]}
               alignItems="center"
               justifyContent="center"
-              mb={{ lg: "0" }}
-              w={{ lg: "auto" }}
+              mb={["", "", "0"]}
+              w={["", "", "auto"]}
               mr="8"
             >
-              <img
+              <Img
                 alt={post.author.name}
-                height="30px"
-                width="30px"
-                className="align-middle rounded-full"
+                h="30px"
+                w="30px"
+                verticalAlign="middle"
+                rounded="full"
                 src={post.author.image.url}
               />
               <Text
@@ -50,7 +102,7 @@ const PostDetail = ({ post }) => {
                 color="gray.700"
                 ml="2"
                 fontWeight="medium"
-                fontSize="lg"
+                fontSize={["md", "md", "lg"]}
               >
                 {post.author.name}
               </Text>
@@ -79,65 +131,17 @@ const PostDetail = ({ post }) => {
               </chakra.span>
             </Box>
           </Box>
-          <chakra.h1 mb="8" fontSize="3xl" fontWeight="semibold">
+          <chakra.h1
+            mb="8"
+            fontSize={["md", "md", "2xl"]}
+            fontWeight="semibold"
+          >
             {post.title}
           </chakra.h1>
-          <RichText
-            content={post.content.raw.children}
-            renderers={{
-              h1: ({ children }) => <h1>{children}</h1>,
-              blockquote: ({ children }) => (
-                <blockquote
-                  style={{
-                    paddingLeft: "16px",
-                    borderLeft: "4px solid blue",
-                    fontSize: "26px",
-                  }}
-                >
-                  {children}
-                </blockquote>
-              ),
-              image: ({ children }) => (
-                <img
-                  alt={children.title}
-                  height={children.height}
-                  width={children.width}
-                  src={children.src}
-                />
-              ),
-              a: ({ children, href, openInNewTab }) => (
-                <a
-                  href={href}
-                  target={openInNewTab ? "_blank" : "_self"}
-                  style={{ color: "blue" }}
-                  rel="noreferrer"
-                >
-                  {children}
-                </a>
-              ),
-              h2: ({ children }) => (
-                <h2 style={{ color: "black" }}>{children}</h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="text-xl font-semibold mb-4">{children}</h3>
-              ),
-              h4: ({ children }) => (
-                <h4 style={{ color: "black" }}>{children}</h4>
-              ),
-              paragraph: ({ children }) => <p className="mb-8">{children}</p>,
-              bold: ({ children }) => <strong>{children}</strong>,
-              code_block: ({ children }) => {
-                return (
-                  <pre className="line-numbers language-none">
-                    <code>{children}</code>
-                  </pre>
-                );
-              },
-            }}
-          />
+          <Box fontSize={['10','10','16px']}  fontStyle='normal' fontWeight='' >{details}</Box>
         </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

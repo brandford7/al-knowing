@@ -5,7 +5,8 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const fetchPosts = async () => {
   const query = gql`
     query MyQuery {
-      postsConnection {
+      postsConnection() {
+        
         edges {
           cursor
           node {
@@ -28,7 +29,9 @@ export const fetchPosts = async () => {
               name
               slug
             }
+            
           }
+          
         }
       }
     }

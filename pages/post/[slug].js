@@ -35,6 +35,8 @@ const PostDetails = ({ post }) => {
             "repeat(12,1fr)",
           ]}
           gap="12"
+          
+          
         >
           <GridItem colSpan={["1", "1", "8"]}>
             <PostDetail post={post} />
