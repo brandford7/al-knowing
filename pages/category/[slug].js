@@ -14,8 +14,8 @@ const CategoryPost = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>{posts.slug}</title>
-        <meta name="description" content="Home" />
+        <title>Categories</title>
+        <meta name="description" content="Categories" />
         <link rel="icon" href="/favicon.jpg" />
       </Head>
       <Container maxW="container.xl" mx="auto" px="10" mb="8">

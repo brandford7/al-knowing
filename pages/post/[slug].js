@@ -24,7 +24,7 @@ const PostDetails = ({ post }) => {
     <>
       <Head>
         <title>{post.title}</title>
-        <meta name={post.title} content={post.title} />
+        <meta name='description' content={post.excerpt} />
         <link rel="icon" href={post.featuredImage.url} />
       </Head>
       <Container maxW="container.xl" mx="auto" px="10" mb="8">

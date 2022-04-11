@@ -11,7 +11,7 @@ export default function Home({ posts }) {
     <Container px="10" mx="auto" mb="8" maxW="container.xl">
       <Head>
         <title>All Knowing News</title>
-        <meta name="description" content="Home" />
+        <meta name="description" content="The best website for news" />
         <link rel="icon" href="/favicon.jpg" />
       </Head>
       <FeaturedPosts />
