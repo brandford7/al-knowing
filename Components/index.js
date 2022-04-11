@@ -10,3 +10,4 @@ export { default as CommentsForm } from "./CommentsForm";
 export { default as LoaderBar } from "./LoaderBar";
 export { default as FeaturedPostCard } from "./FeaturedPostCard";
 export { default as AdjacentPostCard } from "./AdjacentPostCard";
+export { default as ScrollToTop } from "./ScrollToTop";

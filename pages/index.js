@@ -2,13 +2,14 @@ import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import Head from "next/head";
 
 import { PostWidget, PostCard, Categories } from "../Components";
+
 import { FeaturedPosts } from "../sections";
 
 import { fetchPosts } from "../Services";
 
 export default function Home({ posts }) {
   return (
-    <Container px="10" mx="auto" mb="8" maxW="container.xl">
+   <> <Container px="10" mx="auto" mb="8" maxW="container.xl">
       <Head>
         <title>All Knowing News</title>
         <meta name="description" content="The best website for news" />
@@ -35,6 +36,7 @@ export default function Home({ posts }) {
         </GridItem>
       </Grid>
     </Container>
+    </>
   );
 }
 
