@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 
 class MyDocument extends Document {
@@ -11,7 +12,12 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-         
+          {" "}
+          <Script
+            data-cfasync="false"
+            type="text/javascript"
+            src="//p439817.clksite.com/adServe/banners?tid=439817_874235_1"
+          />
         </Head>
 
         <body>

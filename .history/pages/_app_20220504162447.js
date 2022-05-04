@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
             });
           `,
           }}
-        />
+        />{/*
         <Script
           data-cfasync="false"
           type="text/javascript"
