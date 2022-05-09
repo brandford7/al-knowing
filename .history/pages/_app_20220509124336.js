@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }) {
           }}
         />
        
+        ksite.com/adServe/banners?tid=446446_874232_0'/>
         <Layout>
           <Component {...pageProps} />
         </Layout>

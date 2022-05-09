@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }) {
           }}
         />
        
+        <Script  data-cfasync='false' type='text/javascript' src='//p446446.clksite.com/adServe/banners?tid=446446_874232_0'/>
         <Layout>
           <Component {...pageProps} />
         </Layout>
